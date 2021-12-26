@@ -1,4 +1,5 @@
 package com.bridgelabz.payrolljdbc;
+
 public class Employee {
     public int Id;
     public String Name;
@@ -22,8 +23,11 @@ public class Employee {
     public void setName(String Name) {
         this.Name = Name;
     }
+    
     @Override
     public String toString() {
         return "Employee [Id=" + Id + ", Name=" + Name + ", basicPay=" + basicPay + "]";
     }
+
+
 }
