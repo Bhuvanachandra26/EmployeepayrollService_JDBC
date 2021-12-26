@@ -1,10 +1,19 @@
 package com.bridgelabz.payrolljdbc;
 
+import java.sql.Date;
+
 public class Employee {
     public int Id;
     public String Name;
     public float basicPay;
+    public Date Start_Date;
 
+    public Date getStart_Date() {
+        return Start_Date;
+    }
+    public void setStart_Date(Date start_Date) {
+        this.Start_Date = start_Date;
+    }
     public float getBasicPay() {
         return basicPay;
     }
@@ -25,6 +34,9 @@ public class Employee {
     }
     @Override
     public String toString() {
-        return "Employee [Id=" + Id + ", Name=" + Name + ",  basicPay=" + basicPay + "]";
+        return "Employee [Id=" + Id + ", Name=" + Name + ", basicPay=" + basicPay + ", Start_Date=" + Start_Date + "]";
     }
+
+
+
 }
