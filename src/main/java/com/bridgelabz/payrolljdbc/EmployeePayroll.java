@@ -38,7 +38,6 @@ public class EmployeePayroll
     }
 
     private static void insertData() throws ClassNotFoundException, SQLException {
-        System.out.println("Enter Name");
         Employee details = new Employee();
         details.setName(s.next());
 
