@@ -23,11 +23,8 @@ public class Employee {
     public void setName(String Name) {
         this.Name = Name;
     }
-   
     @Override
     public String toString() {
-        return "Employee [Id=" + Id + ", Name=" + Name + ", basicPay=" + basicPay + "]";
+        return "Employee [Id=" + Id + ", Name=" + Name + ",  basicPay=" + basicPay + "]";
     }
-
-
 }
