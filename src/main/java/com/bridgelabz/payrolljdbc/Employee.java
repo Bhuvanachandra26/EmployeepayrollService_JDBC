@@ -15,7 +15,7 @@ public class Employee {
         return Id;
     }
     public void setId(int id) {
-        Id = id;
+        this.Id = id;
     }
     public String getName() {
         return Name;
@@ -23,7 +23,7 @@ public class Employee {
     public void setName(String Name) {
         this.Name = Name;
     }
-    
+   
     @Override
     public String toString() {
         return "Employee [Id=" + Id + ", Name=" + Name + ", basicPay=" + basicPay + "]";

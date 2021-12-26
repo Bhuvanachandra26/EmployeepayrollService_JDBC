@@ -16,6 +16,8 @@ public class EmployeePayroll
         int choice = s.nextInt();
 
         switch(choice) {
+            case 0:
+                System.exit(0);
             case 1:
                 insertData();
                 break;
@@ -36,7 +38,7 @@ public class EmployeePayroll
     }
 
     private static void insertData() throws ClassNotFoundException, SQLException {
-        System.out.println("Enter FirstName");
+        System.out.println("Enter Name");
         Employee details = new Employee();
         details.setName(s.next());
 
