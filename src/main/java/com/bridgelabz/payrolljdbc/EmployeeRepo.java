@@ -1,6 +1,7 @@
 package com.bridgelabz.payrolljdbc;
 
 import java.sql.Connection;
+
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -8,6 +9,20 @@ import java.sql.Statement;
 public class EmployeeRepo {
 
     public void insertRecord(EmployeeDetails details) throws ClassNotFoundException, SQLException {
+
+import java.sql.Date;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+
+public class EmployeeRepo {
+
+    public void insertRecord(Employee details) throws ClassNotFoundException, SQLException {
+
         Connection connection = null;
         Statement statement = null;
         try {
@@ -17,12 +32,20 @@ public class EmployeeRepo {
             //Step2: Establish a MySql Connection
             connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/employee_payroll_service", "root", "Bhuvana@426");
 
+
+
+            connection.setAutoCommit(false);
+
+
             //Step3: Create Statement
             statement = connection.createStatement();
 
             //Step4: Execute Query
             String query = "insert into employee_payroll(Name) value('"+details.getName()+"')";
             int result = statement.executeUpdate(query);
+
+            connection.commit();
+
             System.out.print(result + " rows affected");
 
         }catch (SQLException e) {
@@ -38,4 +61,7 @@ public class EmployeeRepo {
             }
         }
     }
+
+
+   
 }
