@@ -1,6 +1,7 @@
 package com.bridgelabz.payrolljdbc;
 
 import java.sql.Connection;
+
 import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -23,11 +24,11 @@ public class EmployeeRepo {
             connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/employee_payroll_service", "root", "Bhuvana@426");
 
             connection.setAutoCommit(false);
-
             //Step3: Create Statement
             statement = connection.createStatement();
 
             //Step4: Execute Query
+
             String query = "insert into employee_payroll(Name,basic_pay) value('"+details.getName()+"','"+details.getBasicPay()+"')";
             int result = statement.executeUpdate(query);
             connection.commit();
@@ -46,6 +47,7 @@ public class EmployeeRepo {
             }
         }
     }
+
 
     public List<Employee> findAll() throws SQLException {
         List<Employee> details=new ArrayList<>();
@@ -314,4 +316,5 @@ public class EmployeeRepo {
             }
         }
     }
+
 }

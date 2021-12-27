@@ -1,6 +1,7 @@
 package com.bridgelabz.payrolljdbc;
 
 import java.sql.SQLException;
+
 import java.util.List;
 import java.util.Scanner;
 
@@ -10,11 +11,27 @@ public class EmployeePayroll
     static final Scanner s = new Scanner(System.in);
 	private static final String Name = null;
 
+
+    public static void main(String[] args) throws ClassNotFoundException, SQLException {
+        Scanner s = new Scanner(System.in);
+
+        System.out.println("Enter Name");
+        EmployeeDetails details = new EmployeeDetails();
+        details.setName(s.next());
+
+        EmployeeRepo repo = new EmployeeRepo();
+        repo.insertRecord(details);
+    }
+
+    static final Scanner s = new Scanner(System.in);
+
+
     public static void main(String[] args) throws ClassNotFoundException, SQLException {
 
         System.out.println("Press 1 to Insert Data\nPress 2 to Reterive data"
                 + "\nPress 3 to Update data\nPress 4 to delete data\nPress 5 to Retrive Data ParticularDateRange"
-                + "\nPress 6 to get Sum\nPress 7 to alter table employeepayroll");
+                + "\nPress 6 to get Sum\nPress 7 to alter table employeepayroll");         
+
         int choice = s.nextInt();
 
         switch(choice) {
@@ -39,6 +56,7 @@ public class EmployeePayroll
             case 7:
                 AlterTAbleEmployeePayroll();
                 break;
+
         }
     }
 
@@ -54,8 +72,10 @@ public class EmployeePayroll
         Employee details = new Employee();
         details.setName(s.next());
 
+
         System.out.println("Enter Basic Pay");
         details.setBasicPay(s.nextFloat());
+
 
         EmployeeRepo repo = new EmployeeRepo();
         repo.insertRecord(details);
@@ -73,17 +93,6 @@ public class EmployeePayroll
         repo.updatedata(id, basicPay);
     }
 
-    private static void DeleteData() throws SQLException {
-
-        System.out.println("Enter Id");
-        int id = s.nextInt();
-
-        System.out.println("Enter Name");
-        String firstName = s.next();
-
-        EmployeeRepo repo = new EmployeeRepo();
-        repo.deletedata(id, Name);
-    }
 
     private static void ReteriveDataForParticularDateRange() throws SQLException {
         EmployeeRepo repo = new EmployeeRepo();
@@ -96,8 +105,10 @@ public class EmployeePayroll
         repo.usedatabaseFunction();
     }
 
+
     private static void AlterTAbleEmployeePayroll() throws SQLException {
         EmployeeRepo repo = new EmployeeRepo();
         repo.alterTable_EmployeePayroll();
     }
+
 }
