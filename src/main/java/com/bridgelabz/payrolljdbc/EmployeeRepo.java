@@ -1,6 +1,7 @@
 package com.bridgelabz.payrolljdbc;
 
 import java.sql.Connection;
+
 import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -32,7 +33,6 @@ public class EmployeeRepo {
 
             //Step2: Establish a MySql Connection
             connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/employee_payroll_service", "root", "Bhuvana@426");
-
             connection.setAutoCommit(false);
 
             //Step3: Create Statement
@@ -85,8 +85,7 @@ public class EmployeeRepo {
 
                 String name = resultset.getString(2);
                 info.setName(name);
-
-                
+              
                 float pay =resultset.getFloat(4);
                 info.setBasicPay(pay);
 
@@ -101,7 +100,7 @@ public class EmployeeRepo {
 
                 float netpay =resultset.getFloat(8);
                 info.setBasicPay(netpay);
-
+              
                 String start=resultset.getString(9);
                 info.setStart_Date(start);
 
@@ -151,9 +150,8 @@ public class EmployeeRepo {
             }
         }
     }
-
-
     public void deletedata(int id , String Name) throws SQLException {
+
         Connection con = null;
         PreparedStatement prestatement = null;
         try {
@@ -164,6 +162,7 @@ public class EmployeeRepo {
             String query ="delete from employee_payroll where Name=? or Id=?";
             prestatement = con.prepareStatement(query);
             prestatement.setString(1, Name);
+
             prestatement.setInt(2, id);
             prestatement.executeUpdate();
             System.out.print("Records Deleted!");
@@ -240,7 +239,6 @@ public class EmployeeRepo {
         }
         return details;
     }
-
 
     public void usedatabaseFunction() throws SQLException {
 
@@ -371,7 +369,6 @@ public class EmployeeRepo {
             }
         }
     }
-
     public long countEntries() {
         return empList.size();
     }
@@ -380,4 +377,5 @@ public class EmployeeRepo {
         empList.add(employee);
 
     }
+
 }
