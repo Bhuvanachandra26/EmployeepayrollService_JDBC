@@ -13,16 +13,12 @@ import java.util.List;
 public class EmployeeRepo {
 
     private List<Employee> empList;
-
-
     public EmployeeRepo(List<Employee> empList) {
         this.empList=new ArrayList<>(empList);
     }
-
     public EmployeeRepo() {
         // TODO Auto-generated constructor stub
     }
-
     public void insertRecord(Employee details) throws ClassNotFoundException, SQLException {
         Connection connection = null;
         Statement statement = null;
@@ -32,7 +28,6 @@ public class EmployeeRepo {
 
             //Step2: Establish a MySql Connection
             connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/employee_payroll_service", "root", "Bhuvana@426");
-
             connection.setAutoCommit(false);
 
             //Step3: Create Statement
@@ -86,12 +81,11 @@ public class EmployeeRepo {
                 String name = resultset.getString(2);
                 info.setName(name);
 
+
                 float pay =resultset.getFloat(4);
                 info.setBasicPay(pay);
-
                 String start=resultset.getString(9);
                 info.setStart_Date(start);
-
                 details.add(info);
             }
         }catch (SQLException e) {
@@ -138,7 +132,6 @@ public class EmployeeRepo {
         }
     }
 
-
     public void deletedata(int id , String Name) throws SQLException {
         Connection con = null;
         PreparedStatement prestatement = null;
@@ -175,17 +168,12 @@ public class EmployeeRepo {
         PreparedStatement prepstatement = null;
         try {
             DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver ());
-
             connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/employee_payroll_service", "root", "Bhuvana@426");
-
             String query1 ="Select * from employee_payroll where Start_Date between Cast('2020-03-10' as date) and date(now()); ";
             prepstatement = connection.prepareStatement(query1);
-
             ResultSet resultset1 = prepstatement.executeQuery();
-
             while(resultset1.next()) {
                 Employee info = new Employee();
-
                 int id=resultset1.getInt(1);
                 info.setId(id);
 
@@ -214,8 +202,7 @@ public class EmployeeRepo {
         }
         return details;
     }
-
-
+  
     public void usedatabaseFunction() throws SQLException {
 
         Connection connection = null;
@@ -331,7 +318,6 @@ public class EmployeeRepo {
             int result4 = statement.executeUpdate(query4);
             System.out.println(result4+" Column Net_Pay is added successfully!");
 
-
         }catch (SQLException e) {
             e.printStackTrace();
         }catch (Exception e) {
@@ -345,7 +331,6 @@ public class EmployeeRepo {
             }
         }
     }
-
     public long countEntries() {
         return empList.size();
     }

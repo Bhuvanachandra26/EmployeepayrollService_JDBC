@@ -52,11 +52,9 @@ public class EmployeePayroll
         System.out.println("Enter Name");
         Employee details = new Employee();
         details.setName(s.next());
-
-
+      
         System.out.println("Enter Basic Pay");
         details.setBasicPay(s.nextFloat());
-
         EmployeeRepo repo = new EmployeeRepo();
         repo.insertRecord(details);
     }
@@ -84,7 +82,6 @@ public class EmployeePayroll
         EmployeeRepo repo = new EmployeeRepo();
         repo.deletedata(id, Name);
     }
-
     private static void ReteriveDataForParticularDateRange() throws SQLException {
         EmployeeRepo repo = new EmployeeRepo();
         List<Employee> details = repo.findAllForParticularDateRange();
@@ -95,11 +92,8 @@ public class EmployeePayroll
         EmployeeRepo repo = new EmployeeRepo();
         repo.usedatabaseFunction();
     }
-
     private static void AlterTAbleEmployeePayroll() throws SQLException {
         EmployeeRepo repo = new EmployeeRepo();
         repo.alterTable_EmployeePayroll();
     }
-
-
 }
