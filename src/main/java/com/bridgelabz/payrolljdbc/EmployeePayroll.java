@@ -1,7 +1,6 @@
 package com.bridgelabz.payrolljdbc;
 
 import java.sql.SQLException;
-
 import java.util.List;
 import java.util.Scanner;
 
@@ -14,7 +13,6 @@ public class EmployeePayroll
 
         System.out.println("Press 1 to Insert Data\nPress 2 to Reterive data"
                 + "\nPress 3 to Update data\nPress 4 to delete data\nPress 5 to Retrive Data ParticularDateRange"
-
                 + "\nPress 6 to get Sum\nPress 7 to alter table employeepayroll");
         int choice = s.nextInt();
 
@@ -40,7 +38,6 @@ public class EmployeePayroll
             case 7:
                 AlterTAbleEmployeePayroll();
                 break;
-
         }
     }
 
@@ -55,7 +52,7 @@ public class EmployeePayroll
         System.out.println("Enter Name");
         Employee details = new Employee();
         details.setName(s.next());
-       
+      
         System.out.println("Enter Basic Pay");
         details.setBasicPay(s.nextFloat());
         EmployeeRepo repo = new EmployeeRepo();
@@ -85,8 +82,6 @@ public class EmployeePayroll
         EmployeeRepo repo = new EmployeeRepo();
         repo.deletedata(id, Name);
     }
-
-
     private static void ReteriveDataForParticularDateRange() throws SQLException {
         EmployeeRepo repo = new EmployeeRepo();
         List<Employee> details = repo.findAllForParticularDateRange();
@@ -97,8 +92,6 @@ public class EmployeePayroll
         EmployeeRepo repo = new EmployeeRepo();
         repo.usedatabaseFunction();
     }
-
-
     private static void AlterTAbleEmployeePayroll() throws SQLException {
         EmployeeRepo repo = new EmployeeRepo();
         repo.alterTable_EmployeePayroll();

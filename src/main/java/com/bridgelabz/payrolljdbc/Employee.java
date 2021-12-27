@@ -23,7 +23,6 @@ public class Employee {
         return Start_Date;
     }
     public void setStart_Date(String start_Date) {
-
         this.Start_Date = start_Date;
     }
     public float getBasicPay() {
@@ -44,10 +43,8 @@ public class Employee {
     public void setName(String Name) {
         this.Name = Name;
     }
-    
     @Override
     public String toString() {
-        return "Employee [Id=" + Id + ", Name=" + Name + ", basicPay=" + basicPay+ ", Start_Date=" + Start_Date + "]";
+        return "Employee [Id=" + Id + ", Name=" + Name + ", basicPay=" + basicPay + ", Start_Date=" + Start_Date + "]";
     }
-
 }
