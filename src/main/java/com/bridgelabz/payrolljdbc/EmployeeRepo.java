@@ -13,6 +13,17 @@ import java.util.List;
 
 public class EmployeeRepo {
 
+    private List<Employee> empList;
+
+
+    public EmployeeRepo(List<Employee> empList) {
+        this.empList=new ArrayList<>(empList);
+    }
+
+    public EmployeeRepo() {
+        // TODO Auto-generated constructor stub
+    }
+
     public void insertRecord(Employee details) throws ClassNotFoundException, SQLException {
         Connection connection = null;
         Statement statement = null;
@@ -22,13 +33,12 @@ public class EmployeeRepo {
 
             //Step2: Establish a MySql Connection
             connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/employee_payroll_service", "root", "Bhuvana@426");
-
             connection.setAutoCommit(false);
+
             //Step3: Create Statement
             statement = connection.createStatement();
 
             //Step4: Execute Query
-
             String query = "insert into employee_payroll(Name,basic_pay) value('"+details.getName()+"','"+details.getBasicPay()+"')";
             int result = statement.executeUpdate(query);
             connection.commit();
@@ -47,7 +57,6 @@ public class EmployeeRepo {
             }
         }
     }
-
 
     public List<Employee> findAll() throws SQLException {
         List<Employee> details=new ArrayList<>();
@@ -76,10 +85,22 @@ public class EmployeeRepo {
 
                 String name = resultset.getString(2);
                 info.setName(name);
-
+              
                 float pay =resultset.getFloat(4);
                 info.setBasicPay(pay);
 
+                float dpay =resultset.getFloat(5);
+                info.setBasicPay(dpay);
+
+                float tpay =resultset.getFloat(6);
+                info.setBasicPay(tpay);
+
+                float tax =resultset.getFloat(7);
+                info.setBasicPay(tax);
+
+                float netpay =resultset.getFloat(8);
+                info.setBasicPay(netpay);
+              
                 String start=resultset.getString(9);
                 info.setStart_Date(start);
 
@@ -129,9 +150,8 @@ public class EmployeeRepo {
             }
         }
     }
+    public void deletedata(int id , String Name) throws SQLException {
 
-
-    public void deletedata(int id , String firstName) throws SQLException {
         Connection con = null;
         PreparedStatement prestatement = null;
         try {
@@ -139,9 +159,10 @@ public class EmployeeRepo {
             DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver ());
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/employee_payroll_service", "root", "Bhuvana@426");
 
-            String query ="delete from employee_payroll where FirstName=? or Id=?";
+            String query ="delete from employee_payroll where Name=? or Id=?";
             prestatement = con.prepareStatement(query);
-            prestatement.setString(1, firstName);
+            prestatement.setString(1, Name);
+
             prestatement.setInt(2, id);
             prestatement.executeUpdate();
             System.out.print("Records Deleted!");
@@ -187,6 +208,18 @@ public class EmployeeRepo {
                 float pay =resultset1.getFloat(4);
                 info.setBasicPay(pay);
 
+                float dpay =resultset1.getFloat(5);
+                info.setBasicPay(dpay);
+
+                float tpay =resultset1.getFloat(6);
+                info.setBasicPay(tpay);
+
+                float tax =resultset1.getFloat(7);
+                info.setBasicPay(tax);
+
+                float netpay =resultset1.getFloat(8);
+                info.setBasicPay(netpay);
+
                 String start=resultset1.getString(9);
                 info.setStart_Date(start);
 
@@ -206,7 +239,6 @@ public class EmployeeRepo {
         }
         return details;
     }
-
 
     public void usedatabaseFunction() throws SQLException {
 
@@ -296,12 +328,33 @@ public class EmployeeRepo {
             DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver ());
             connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/employee_payroll_service", "root", "Bhuvana@426");
 
-            //adding Net_Pay  columns from basic_pay and Tax
-            String query4="alter table employee_payroll_service.employee_payroll add Net_Pay float AS (basic_pay - Tax ) after Tax" ;
-            statement=connection.createStatement();
-            int result4 = statement.executeUpdate(query4);
-            System.out.println(result4+" Column Net_Pay is added successfully!");
+//			//adding deduction columns from basic pay
+//			String query1="alter table employee_payroll_service.employee_payroll add Deduction_Pay float AS (basic_pay * 0.2 ) after basic_pay;" ;
+//			statement=connection.createStatement();
+//			int result = statement.executeUpdate(query1);
+//			System.out.println(result+" Column Deduction pay is added successfully!");
+//
 
+//			//adding taxable pay columns from basic pay
+//			String query2="alter table employee_payroll_service.employee_payroll add Taxable_Pay float AS (basic_pay - Deduction_Pay ) after Deduction_Pay" ;
+//			statement=connection.createStatement();
+//			int result1 = statement.executeUpdate(query2);
+//			System.out.println(result1+" Column Taxable pay is added successfully!");
+//
+
+//			//adding Tax  columns from Taxable_Pat
+//			String query3="alter table employee_payroll_service.employee_payroll add Tax float AS (Taxable_Pay * 0.1 ) after Taxable_Pay" ;
+//			statement=connection.createStatement();
+//			int result3 = statement.executeUpdate(query3);
+//			System.out.println(result3+" Column Tax is added successfully!");
+//
+
+//			//adding Net_Pay  columns from basic_pay and Tax
+//			String query4="alter table employee_payroll_service.employee_payroll add Net_Pay float AS (basic_pay - Tax ) after Tax" ;
+//			statement=connection.createStatement();
+//			int result4 = statement.executeUpdate(query4);
+//			System.out.println(result4+" Column Net_Pay is added successfully!");
+//
 
         }catch (SQLException e) {
             e.printStackTrace();
@@ -315,6 +368,14 @@ public class EmployeeRepo {
                 statement.close();
             }
         }
+    }
+    public long countEntries() {
+        return empList.size();
+    }
+
+    public void addEmployeeToPayroll(Employee employee) {
+        empList.add(employee);
+
     }
 
 }
